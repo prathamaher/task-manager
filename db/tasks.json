@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "date": "01-07-2025",
+      "task": "complete the lecture"
+    },
+    {
+      "id": 2,
+      "date": "02-07-2025",
+      "task": "complete the video"
+    },
+    {
+      "id": "64d2",
+      "date": "2025-07-02T08:49:44.421Z"
+    },
+    {
+      "id": "dd78",
+      "date": "2025-07-02T08:49:53.302Z"
+    }
+  ]
+}
