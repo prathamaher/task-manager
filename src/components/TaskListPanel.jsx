@@ -1,7 +1,7 @@
 import TaskListPanelBG from "../assets/taskListPanelBG.svg";
 import TaskInputForm from "./TaskInputForm";
 import ScrollableDiv from "./ScrollableDiv";
-import taskPanels from "../store/slices/tasksSlice";
+import taskPanels from "../constants/taskPanels";
 import { useSelector } from "react-redux";
 
 const TaskListPanel = () => {
@@ -31,22 +31,21 @@ const TaskListPanel = () => {
       <div>
         <h1>{currentTaskPanel}</h1>
       </div>
-      <ScrollableDiv height="64%" className="mt-12">
-        {/* Background Image */}
-        {tasksToDisplay.length === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-900 rounded">
-            <img
-              className="w-1/5 opacity-80"
-              src={TaskListPanelBG}
-              alt="Task Panel Background"
-            />
-          </div>
-        )}
-
+      {/* Background Image */}
+      {tasksToDisplay.length === 0 && (
+        <div className="absolute inset-20 flex items-center justify-center bg-gray-900 rounded">
+          <img
+            className="w-1/5 opacity-80"
+            src={TaskListPanelBG}
+            alt="Task Panel Background"
+          />
+        </div>
+      )}
+      <ScrollableDiv height="61%" className="mt-12">
         {/* Task List */}
         <ul className="space-y-2 mb-4 px-3 text-white">
           {tasksToDisplay.map((task, index) => (
-            <li key={index} className="bg-gray-700 p-2 rounded">
+            <li key={index} className="bg-gray-800 p-2 rounded">
               {task}
             </li>
           ))}

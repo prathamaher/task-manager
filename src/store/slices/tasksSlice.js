@@ -1,12 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const taskPanels = {
-  MyDayTasksPanel: "MyDayPanel",
-  ImportantTasksPanel: "ImportantTasksPanel",
-  PlannedTasksPanel: "PlannedTasksPanel",
-  AllTasksPanel: "AllTasksPanel",
-};
-
+import taskPanels from "../../constants/taskPanels";
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -20,38 +13,34 @@ const tasksSlice = createSlice({
     changePanel(state, action) {
       state.currentTaskPanel = action.payload;
     },
+
     addTasks(state, action) {
-      if (state.currentTaskPanel === taskPanels.AllTasksPanel) {
-        state.allTasks.unshift(action.payload);
-      } else if (state.currentTaskPanel === taskPanels.MyDayTasksPanel) {
-        state.myDayTasks.unshift(action.payload);
-      } else if (state.currentTaskPanel === taskPanels.ImportantTasksPanel) {
-        state.importantTasks.unshift(action.payload);
-      } else {
-        state.plannedTasks.unshift(action.payload);
+      switch (state.currentTaskPanel) {
+        case taskPanels.AllTasksPanel:
+          state.allTasks.unshift(action.payload);
+          break;
+        case taskPanels.MyDayTasksPanel:
+          state.myDayTasks.unshift(action.payload);
+          break;
+        case taskPanels.ImportantTasksPanel:
+          state.importantTasks.unshift(action.payload);
+          break;
+        case taskPanels.PlannedTasksPanel:
+        default:
+          state.plannedTasks.unshift(action.payload);
+          break;
       }
     },
-    removeTasks(state, action) {
-      const taskIdToRemove = action.payload;
 
-      state.allTasks = state.allTasks.filter(
-        (task) => task.id !== taskIdToRemove
-      );
-      state.myDayTasks = state.myDayTasks.filter(
-        (task) => task.id !== taskIdToRemove
-      );
-      state.importantTasks = state.importantTasks.filter(
-        (task) => task.id !== taskIdToRemove
-      );
-      state.plannedTasks = state.plannedTasks.filter(
-        (task) => task.id !== taskIdToRemove
-      );
+    removeTasks(state, action) {
+      const idToRemove = action.payload;
+      const keys = ["allTasks", "myDayTasks", "importantTasks", "plannedTasks"];
+      for (const key of keys) {
+        state[key] = state[key].filter((task) => task.id !== idToRemove);
+      }
     },
   },
 });
 
-export default taskPanels;
-
 export const { changePanel, addTasks, removeTasks } = tasksSlice.actions;
-
 export const tasksReducer = tasksSlice.reducer;

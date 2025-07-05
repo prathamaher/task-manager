@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { SunIcon, StarIcon, CalendarIcon, HomeIcon } from "./Icons";
-import taskPanels, { changePanel } from "../store/slices/tasksSlice";
+import { changePanel } from "../store/slices/tasksSlice";
+import taskPanels from "../constants/taskPanels";
 const FixedSideBarList = () => {
   const {
     currentTaskPanel,
@@ -17,8 +18,8 @@ const FixedSideBarList = () => {
   };
 
   return (
-    <div className=" border-b border-b-gray-500 ">
-      <ul className="py-2 [&>*]:hover:bg-gray-800 [&>*]:hover:rounded-sm">
+    <div className="mt-1 border-b border-b-gray-500 ">
+      <ul className="py-2 [&>*]:hover:bg-gray-900 [&>*]:hover:rounded-sm [&>*]:cursor-pointer">
         <li
           onClick={() => handleTaskListClick(taskPanels.MyDayTasksPanel)}
           className="flex justify-between items-center px-3 py-2"

@@ -8,9 +8,7 @@ const SideBar = () => {
     <div className="px-3">
       {/* desktop menu */}
       <UserAccount />
-      <div>
-        <SearchBar />
-      </div>
+      <SearchBar />
       <FixedSideBarList />
       <CustomSideBarList />
     </div>
