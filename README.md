@@ -1,7 +1,3 @@
-Here’s a professional and comprehensive `README.md` template for your **Task Manager App** built with **React**. You can customize the links and descriptions based on your actual features, demo, and project structure.
-
----
-
 ````markdown
 # 📝 Task Manager App
 
@@ -96,18 +92,7 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 ## 📬 Contact
 
-Made with ❤️ by [Your Name](https://github.com/your-username)
-For suggestions or issues, please open an [issue](https://github.com/your-username/task-manager-app/issues).
+Made with ❤️ by [Your Name](https://github.com/prathamaher)
+For suggestions or issues, please open an [issue](https://github.com/prathamaher/task-manager-app/issues).
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
-```
-
----
-
-Let me know if you're using **Redux, Tailwind, or a backend**, and I’ll tailor it exactly for your stack.
 ```
