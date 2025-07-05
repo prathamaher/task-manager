@@ -3,9 +3,9 @@ import SideBar from "./components/SideBar";
 import TaskListPanel from "./components/TaskListPanel";
 const App = () => {
   return (
-    <div className="h-screen w-full bg-gray-900 text-white">
+    <div className="h-screen w-full bg-gray-800 text-white">
       <Header />
-      <div className="grid grid-cols-[minmax(250px,1fr)_3fr] gap-2 p-2">
+      <div className="h-11/12 grid grid-cols-[minmax(225px,1.1fr)_4fr] gap-2 p-2">
         <SideBar />
         <TaskListPanel />
       </div>

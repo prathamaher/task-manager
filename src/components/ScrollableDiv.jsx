@@ -1,14 +1,15 @@
-const ScrollableDiv = ({ children, height = "300px" }) => {
+const ScrollableDiv = ({ children, height = "300px", className }) => {
   return (
     <div
       style={{ maxHeight: height }}
       className={`
         overflow-y-auto
         [&::-webkit-scrollbar]:w-1
-        [&::-webkit-scrollbar-track]:bg-violet-100
+        [&::-webkit-scrollbar-track]:bg-gray-900
         [&::-webkit-scrollbar-track]:rounded-4xl
-        [&::-webkit-scrollbar-thumb]:bg-violet-400
+        [&::-webkit-scrollbar-thumb]:bg-gray-600
         [&::-webkit-scrollbar-thumb]:rounded-4xl
+        ${className}
       `}
     >
       {children}

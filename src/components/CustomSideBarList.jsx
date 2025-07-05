@@ -1,50 +1,22 @@
 import ScrollableDiv from "./ScrollableDiv";
-import { EnvelopeIcon, PlusIcon } from "./Icons";
+import { HamburgerMenuIcon, EnvelopeIcon, PlusIcon } from "./Icons";
 
 const CustomSideBarList = () => {
   return (
     <div className="my-4">
       <ScrollableDiv height="130px">
         <ul className="py-2 [&>*]:hover:bg-gray-800 [&>*]:hover:rounded-sm">
-          <li className="flex justify-between items-center px-1 py-2">
+          <li className="flex justify-between items-center px-3 py-2">
             <div className="flex justify-between items-center">
+              <HamburgerMenuIcon className={"mr-2"} />
               <p>My Day</p>
             </div>
             <p>total tasks</p>
           </li>
-          <li className="flex justify-between items-center px-1 py-2">
+          <li className="flex justify-between items-center px-3 py-2">
             <div className="flex justify-between items-center">
+              <HamburgerMenuIcon className={"mr-2"} />
               <p>Important</p>
-            </div>
-            <p>total tasks</p>
-          </li>
-          <li className="flex justify-between items-center px-1 py-2">
-            <div className="flex justify-between items-center">
-              <p>Planned</p>
-            </div>
-            <p>total tasks</p>
-          </li>
-          <li className="flex justify-between items-center px-1 py-2">
-            <div className="flex justify-between items-center">
-              <p>Planned</p>
-            </div>
-            <p>total tasks</p>
-          </li>
-          <li className="flex justify-between items-center px-1 py-2">
-            <div className="flex justify-between items-center">
-              <p>Planned</p>
-            </div>
-            <p>total tasks</p>
-          </li>
-          <li className="flex justify-between items-center px-1 py-2">
-            <div className="flex justify-between items-center">
-              <p>Planned</p>
-            </div>
-            <p>total tasks</p>
-          </li>
-          <li className="flex justify-between items-center px-1 py-2">
-            <div className="flex justify-between items-center">
-              <p>Planned</p>
             </div>
             <p>total tasks</p>
           </li>

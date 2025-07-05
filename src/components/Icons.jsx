@@ -120,4 +120,35 @@ const EnvelopeIcon = ({ className }) => (
   </svg>
 );
 
-export { SunIcon, StarIcon, CalendarIcon, HomeIcon, PlusIcon, EnvelopeIcon };
+const HamburgerMenuIcon = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 48 48"
+    className={className}
+  >
+    <path
+      d="M42,12a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2H6a2,2,0,0,1,2-2H40a2,2,0,0,1,2,2Z"
+      fill="#FFFFFF"
+    />
+    <path
+      d="M42,24a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2H6a2,2,0,0,1,2-2H40a2,2,0,0,1,2,2Z"
+      fill="#FFFFFF"
+    />
+    <path
+      d="M42,36a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2H6a2,2,0,0,1,2-2H40a2,2,0,0,1,2,2Z"
+      fill="#FFFFFF"
+    />
+  </svg>
+);
+
+export {
+  SunIcon,
+  StarIcon,
+  CalendarIcon,
+  HomeIcon,
+  PlusIcon,
+  EnvelopeIcon,
+  HamburgerMenuIcon,
+};

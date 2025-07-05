@@ -36,7 +36,7 @@ const SearchBar = () => {
           className="absolute inset-y-0 end-0 flex items-center pe-3"
         >
           <svg
-            className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+            className="w-3.5 h-3.5  text-gray-400 hover:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
