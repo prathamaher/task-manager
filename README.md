@@ -32,7 +32,7 @@ A simple and powerful Task Manager built with **React.js** to help users create,
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/task-manager-app.git
+git clone https://github.com/prathamaher/task-manager-app.git
 cd task-manager-app
 ````
 
@@ -45,7 +45,7 @@ npm install
 3. **Start the development server**
 
 ```bash
-npm start
+npm run dev
 ```
 
 The app will run at [http://localhost:3000](http://localhost:3000)
@@ -94,5 +94,3 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 Made with ❤️ by [Your Name](https://github.com/prathamaher)
 For suggestions or issues, please open an [issue](https://github.com/prathamaher/task-manager-app/issues).
-
-```
