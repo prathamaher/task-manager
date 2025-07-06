@@ -1,7 +1,7 @@
 const UserAccount = () => {
   return (
-    <div className="flex items-center mb-2 p-2 bg-gray-800 rounded-lg">
-      <div className="flex items-center justify-center h-9 w-9 rounded-full bg-violet-400">
+    <div className="flex items-center mb-4 p-2 rounded-lg">
+      <div className="flex items-center justify-center h-9 w-9 rounded-full bg-gray-500">
         <p className="font-bold">PA</p>
       </div>
       <div className="ml-2">

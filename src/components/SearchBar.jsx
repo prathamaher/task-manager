@@ -27,7 +27,7 @@ const SearchBar = () => {
           value={input}
           onChange={handleInputChange}
           className=" border border-gray-500 text-sm rounded-sm
-           focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full ps-2 p-2 bg-gray-700 
+           focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full ps-2 p-2 bg-neutral-900 
             placeholder-gray-400"
           placeholder="Search..."
           required
@@ -36,7 +36,7 @@ const SearchBar = () => {
           type="submit"
           className="absolute inset-y-0 end-0 flex items-center pe-3"
         >
-          <SearchIcon />
+          <SearchIcon className="text-gray-400 hover:text-gray-200" />
         </button>
       </div>
     </form>
