@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { SunIcon, StarIcon, CalendarIcon, HomeIcon } from "./Icons";
-import { changePanel } from "../store/slices/tasksSlice";
 import taskPanels from "../constants/taskPanels";
 import TaskCount from "./TaskCount";
+import { changePanel } from "../store";
 const FixedSideBarList = () => {
   const {
     currentTaskPanel,

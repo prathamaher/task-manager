@@ -1,15 +1,70 @@
-const TaskListItem = () => {
-  return <div></div>;
+import { useDispatch } from "react-redux";
+import TaskCount from "./TaskCount";
+import { useState, useEffect } from "react";
+import { HamburgerMenuIcon } from "./Icons";
+import { updateTaskListTitle, setTaskListEditing } from "../store";
+
+const TaskListItem = ({ list }) => {
+  const dispatch = useDispatch();
+  const [editing, setEditing] = useState(list.isEditing ?? false);
+  const [inputValue, setInputValue] = useState(list.taskListTitle);
+
+  useEffect(() => {
+    if (list.isEditing) {
+      setEditing(true);
+      setInputValue(list.taskListTitle);
+    }
+  }, [list.isEditing, list.taskListTitle]);
+
+  const handleBlur = () => {
+    const trimmedValue = inputValue.trim();
+
+    // Exit editing if unchanged or empty
+    if (!trimmedValue || trimmedValue === list.taskListTitle) {
+      dispatch(setTaskListEditing({ id: list.id, isEditing: false }));
+      setEditing(false);
+      return;
+    }
+
+    dispatch(updateTaskListTitle({ id: list.id, newTitle: trimmedValue }));
+    dispatch(setTaskListEditing({ id: list.id, isEditing: false }));
+    setEditing(false);
+  };
+
+  return (
+    <li className="flex justify-between items-center px-3 py-2 hover:bg-gray-800 rounded">
+      <div className="flex items-center gap-2 flex-1">
+        <HamburgerMenuIcon className="text-red-300" />
+        {editing ? (
+          <input
+            type="text"
+            className="border border-gray-500 text-sm rounded-sm
+              focus:ring-gray-300 focus:outline-none focus:border-gray-300 block w-full ps-1 p-0.5 bg-neutral-700
+              placeholder-gray-400 text-white"
+            value={inputValue}
+            autoFocus
+            onChange={(e) => setInputValue(e.target.value)}
+            onBlur={handleBlur}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") e.target.blur();
+            }}
+          />
+        ) : (
+          <p
+            className="cursor-pointer text-white hover:underline flex-1 truncate"
+            onClick={() =>
+              dispatch(setTaskListEditing({ id: list.id, isEditing: true }))
+            }
+          >
+            {list.taskListTitle}
+          </p>
+        )}
+      </div>
+      <p>
+        <TaskCount panel={""} />
+      </p>
+    </li>
+  );
 };
 
 export default TaskListItem;
-
-{
-  /* <li className="flex justify-between items-center px-3 py-2">
-            <div className="flex justify-between items-center">
-              <HamburgerMenuIcon className={"mr-2 text-red-300"} />
-              <p>My Day</p>
-            </div>
-            <p>total tasks</p>
-          </li> */
-}
