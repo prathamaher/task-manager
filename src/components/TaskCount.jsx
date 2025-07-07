@@ -51,7 +51,7 @@
 import { useSelector } from "react-redux";
 import taskPanels from "../constants/taskPanels";
 
-const TaskCount = () => {
+const TaskCount = ({ panel }) => {
   const {
     currentTaskPanel,
     allTasks,
@@ -62,7 +62,7 @@ const TaskCount = () => {
 
   // Get current panel's tasks directly
   const tasks = (() => {
-    switch (currentTaskPanel) {
+    switch (panel) {
       case taskPanels.MyDayTasksPanel:
         return myDayTasks;
       case taskPanels.ImportantTasksPanel:
