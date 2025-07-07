@@ -9,7 +9,6 @@ const TaskInputForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!input.trim()) return;
-
     dispatch(addTasks(input));
     setInput("");
   };
@@ -26,7 +25,7 @@ const TaskInputForm = () => {
           type="text"
           value={input}
           className=" border border-gray-500 text-sm rounded-sm
-           focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full ps-8 p-2 bg-gray-700 
+           focus:ring-gray-300 focus:outline-none focus:border-gray-300 block w-full ps-8 p-2 bg-neutral-700 
             placeholder-gray-400"
           placeholder="Add New Task"
           required
@@ -35,7 +34,7 @@ const TaskInputForm = () => {
           type="submit"
           className="absolute inset-y-0 start-0 flex items-center ps-3"
         >
-          <PlusIcon className="w-3.5 h-3.5  text-gray-400 hover:text-white" />
+          <PlusIcon className="w-3.5 h-3.5 hover:text-white" />
         </button>
       </form>
     </div>
