@@ -32,7 +32,13 @@ const TaskListItem = ({ list }) => {
   };
 
   return (
-    <li className="flex justify-between items-center px-3 py-2 hover:bg-gray-800 rounded">
+    <li
+      //   onContextMenu={(e) => {
+      //     e.preventDefault();
+      //     dispatch(setTaskListEditing({ id: list.id, isEditing: true }));
+      //   }}
+      className="flex justify-between items-center px-3 py-2 hover:bg-gray-800 rounded"
+    >
       <div className="flex items-center gap-2 flex-1">
         <HamburgerMenuIcon className="text-red-300" />
         {editing ? (
@@ -52,9 +58,10 @@ const TaskListItem = ({ list }) => {
         ) : (
           <p
             className="cursor-pointer text-white hover:underline flex-1 truncate"
-            onClick={() =>
-              dispatch(setTaskListEditing({ id: list.id, isEditing: true }))
-            }
+            // onContextMenu={(e) => {
+            //   e.preventDefault();
+            //   dispatch(setTaskListEditing({ id: list.id, isEditing: true }));
+            // }}
           >
             {list.taskListTitle}
           </p>
