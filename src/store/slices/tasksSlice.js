@@ -20,12 +20,37 @@ function generateUniqueTitle(baseTitle, excludeId, taskList) {
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    currentTaskPanel: taskPanels.MyDayTasksPanel,
-    myDayTasks: [],
-    importantTasks: [],
-    plannedTasks: [],
-    allTasks: [],
-    taskList: [],
+    currentTaskPanelId: taskPanels.MyDayTasksPanelId,
+    taskList: [
+      {
+        id: taskPanels.MyDayTasksPanelId,
+        taskListTitle: "My Day",
+        taskListType: "fixed",
+        tasks: [],
+        isEditing: false,
+      },
+      {
+        id: taskPanels.ImportantTasksPanelId,
+        taskListTitle: "Important",
+        taskListType: "fixed",
+        tasks: [],
+        isEditing: false,
+      },
+      {
+        id: taskPanels.PlannedTasksPanelId,
+        taskListTitle: "Planned",
+        taskListType: "fixed",
+        tasks: [],
+        isEditing: false,
+      },
+      {
+        id: taskPanels.AllTasksPanelId,
+        taskListTitle: "All Tasks",
+        taskListType: "fixed",
+        tasks: [],
+        isEditing: false,
+      },
+    ],
   },
   reducers: {
     addTaskList(state, action) {
@@ -34,8 +59,13 @@ const tasksSlice = createSlice({
       const baseTitle = (listTitle || "Untitled List").trim();
       const finalTitle = generateUniqueTitle(baseTitle, null, state.taskList);
 
+      const customTaskListPanelId = nanoid();
+
+      //storing the new panel for tasklist in taskpanels
+      taskPanels[customTaskListPanelId] = customTaskListPanelId;
+
       state.taskList.push({
-        id: nanoid(),
+        id: customTaskListPanelId,
         taskListTitle: finalTitle,
         taskListType: listType,
         tasks: [],
@@ -66,29 +96,30 @@ const tasksSlice = createSlice({
     },
 
     changePanel(state, action) {
-      state.currentTaskPanel = action.payload;
+      state.currentTaskPanelId = action.payload;
     },
 
     addTasks(state, action) {
-      switch (state.currentTaskPanel) {
-        case taskPanels.AllTasksPanel:
-          state.allTasks.unshift(action.payload);
-          break;
-        case taskPanels.MyDayTasksPanel:
-          state.myDayTasks.unshift(action.payload);
-          break;
-        case taskPanels.ImportantTasksPanel:
-          state.importantTasks.unshift(action.payload);
-          break;
-        case taskPanels.PlannedTasksPanel:
-        default:
-          state.plannedTasks.unshift(action.payload);
-          break;
-      }
+      const taskListToAdd = state.taskList.find(
+        (list) => list.id === state.currentTaskPanelId
+      );
+      taskListToAdd.tasks.unshift(action.payload);
+    },
+
+    removeTaskList(state, action) {
+      const { id } = action.payload;
+
+      state.taskList = state.taskList.filter((list) => list.id !== id);
     },
 
     removeTasks(state, action) {
-      const idToRemove = action.payload;
+      // const { id } = action.payload;
+
+      // for (const list of state.taskList) {
+      //   console.log("list name : ",list.taskListTitle)
+      //   list.tasks = list.tasks.filter((task) => task.id !== id);
+      // }
+
       const keys = ["allTasks", "myDayTasks", "importantTasks", "plannedTasks"];
       for (const key of keys) {
         state[key] = state[key].filter((task) => task.id !== idToRemove);
@@ -104,6 +135,7 @@ export const {
   changePanel,
   addTasks,
   removeTasks,
+  removeTaskList,
 } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;

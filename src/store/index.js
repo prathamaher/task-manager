@@ -8,6 +8,7 @@ import {
   removeTasks,
   updateTaskListTitle,
   setTaskListEditing,
+  removeTaskList,
 } from "./slices/tasksSlice";
 
 const store = configureStore({
@@ -24,4 +25,5 @@ export {
   changePanel,
   addTasks,
   removeTasks,
+  removeTaskList,
 };

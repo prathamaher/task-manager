@@ -1,10 +1,16 @@
 import { useDispatch } from "react-redux";
 import TaskCount from "./TaskCount";
 import { useState, useEffect } from "react";
-import { HamburgerMenuIcon } from "./Icons";
-import { updateTaskListTitle, setTaskListEditing } from "../store";
+import {
+  CalendarIcon,
+  HamburgerMenuIcon,
+  HomeIcon,
+  StarIcon,
+  SunIcon,
+} from "./Icons";
+import { updateTaskListTitle, setTaskListEditing, changePanel } from "../store";
 
-const TaskListItem = ({ list }) => {
+const TaskListItem = ({ list, ...rest }) => {
   const dispatch = useDispatch();
   const [editing, setEditing] = useState(list.isEditing ?? false);
   const [inputValue, setInputValue] = useState(list.taskListTitle);
@@ -31,17 +37,33 @@ const TaskListItem = ({ list }) => {
     setEditing(false);
   };
 
+  const handleTaskListClick = () => {
+    dispatch(changePanel(list.id));
+  };
+
+  const isCustom = list.taskListType === "custom";
+  const icon = () => {
+    if (list.taskListTitle === "My Day") {
+      return <SunIcon className={"text-violet-300"} />;
+    } else if (list.taskListTitle === "Important") {
+      return <StarIcon className={"text-pink-300"} />;
+    } else if (list.taskListTitle === "Planned") {
+      return <CalendarIcon className={"text-blue-300"} />;
+    } else if (list.taskListTitle === "All Tasks") {
+      return <HomeIcon className={"text-teal-300"} />;
+    } else {
+      return <HamburgerMenuIcon className={"text-red-300"} />;
+    }
+  };
+
   return (
     <li
-      //   onContextMenu={(e) => {
-      //     e.preventDefault();
-      //     dispatch(setTaskListEditing({ id: list.id, isEditing: true }));
-      //   }}
-      className="flex justify-between items-center px-3 py-2 hover:bg-gray-800 rounded"
+      className="flex justify-between items-center px-3 py-2 hover:bg-neutral-900 rounded"
+      onClick={() => handleTaskListClick(list.id)}
     >
       <div className="flex items-center gap-2 flex-1">
-        <HamburgerMenuIcon className="text-red-300" />
-        {editing ? (
+        {icon()}
+        {editing && isCustom ? (
           <input
             type="text"
             className="border border-gray-500 text-sm rounded-sm
@@ -56,20 +78,12 @@ const TaskListItem = ({ list }) => {
             }}
           />
         ) : (
-          <p
-            className="cursor-pointer text-white hover:underline flex-1 truncate"
-            // onContextMenu={(e) => {
-            //   e.preventDefault();
-            //   dispatch(setTaskListEditing({ id: list.id, isEditing: true }));
-            // }}
-          >
+          <p className="cursor-pointer text-white flex-1 truncate">
             {list.taskListTitle}
           </p>
         )}
       </div>
-      <p>
-        <TaskCount panel={""} />
-      </p>
+      <TaskCount list={list} />
     </li>
   );
 };

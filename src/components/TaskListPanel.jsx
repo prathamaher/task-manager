@@ -2,6 +2,7 @@ import TaskListPanelBG_BLUE from "../assets/taskListPanelBG_blue.svg";
 import TaskListPanelBG_PINK from "../assets/taskListPanelBG_pink.svg";
 import TaskListPanelBG_TEAL from "../assets/taskListPanelBG_teal.svg";
 import TaskListPanelBG_VIOLET from "../assets/taskListPanelBG_violet.svg";
+import CustomTaskListBG_RED from "../assets/customTaskListBG_red.svg";
 import TaskInputForm from "./TaskInputForm";
 import ScrollableDiv from "./ScrollableDiv";
 import taskPanels from "../constants/taskPanels";
@@ -9,43 +10,38 @@ import { useSelector } from "react-redux";
 import PanelHeader from "./PanelHeader";
 
 const TaskListPanel = () => {
-  const {
-    currentTaskPanel,
-    allTasks,
-    myDayTasks,
-    importantTasks,
-    plannedTasks,
-  } = useSelector((state) => state.tasks);
+  const { currentTaskPanelId, taskList } = useSelector((state) => state.tasks);
 
   const getPanelData = () => {
-    switch (currentTaskPanel) {
-      case taskPanels.MyDayTasksPanel:
-        return {
-          tasks: myDayTasks,
-          color: "violet-300",
-          TaskListPanelBG: TaskListPanelBG_VIOLET,
-        };
-      case taskPanels.ImportantTasksPanel:
-        return {
-          tasks: importantTasks,
-          color: "pink-300",
-          TaskListPanelBG: TaskListPanelBG_PINK,
-        };
-      case taskPanels.PlannedTasksPanel:
-        return {
-          tasks: plannedTasks,
-          color: "blue-300",
-          TaskListPanelBG: TaskListPanelBG_BLUE,
-        };
-      case taskPanels.AllTasksPanel:
-        return {
-          tasks: allTasks,
-          color: "teal-300",
-          TaskListPanelBG: TaskListPanelBG_TEAL,
-        };
-      default:
-        return { tasks: [], color: "", TaskListPanelBG: null };
+    let color = null;
+    let TaskListPanelBG = null;
+
+    const currentTaskList = taskList.find((list, index) => {
+      return list.id === currentTaskPanelId;
+    });
+
+    if (currentTaskPanelId === taskPanels.MyDayTasksPanelId) {
+      color = "violet-300";
+      TaskListPanelBG = TaskListPanelBG_VIOLET;
+    } else if (currentTaskPanelId === taskPanels.ImportantTasksPanelId) {
+      color = "pink-300";
+      TaskListPanelBG = TaskListPanelBG_PINK;
+    } else if (currentTaskPanelId === taskPanels.PlannedTasksPanelId) {
+      color = "blue-300";
+      TaskListPanelBG = TaskListPanelBG_BLUE;
+    } else if (currentTaskPanelId === taskPanels.AllTasksPanelId) {
+      color = "teal-300";
+      TaskListPanelBG = TaskListPanelBG_TEAL;
+    } else {
+      color = "red-300";
+      TaskListPanelBG = CustomTaskListBG_RED;
     }
+
+    return {
+      tasks: currentTaskList.tasks,
+      color: color,
+      TaskListPanelBG: TaskListPanelBG,
+    };
   };
 
   const { tasks, color, TaskListPanelBG } = getPanelData();

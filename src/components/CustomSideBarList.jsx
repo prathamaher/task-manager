@@ -1,7 +1,7 @@
 import ScrollableDiv from "./ScrollableDiv";
-import { HamburgerMenuIcon, EnvelopeIcon, PlusIcon } from "./Icons";
+import { EnvelopeIcon, PlusIcon } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
-import { addTaskList } from "../store";
+import { addTaskList, removeTaskList, setTaskListEditing } from "../store";
 import TaskListItem from "./TaskListItem";
 import ContextMenuWrapper from "./ContextMenuWrapper";
 
@@ -15,38 +15,36 @@ const CustomSideBarList = () => {
 
   // console.log(taskList);
 
-  //contextmenu
-  const items = [
-    {
-      label: "first",
-      action: (arg) => {
-        console.log("first");
-      },
-    },
-    {
-      label: "second",
-      action: (arg) => {
-        console.log("sec");
-      },
-    },
-    {
-      label: "third",
-      action: (arg) => {
-        console.log("third");
-      },
-    },
-  ];
+  //filtering out customLists
+  const customLists = taskList.filter((list) => list.taskListType === "custom");
 
+  //contextmenu
+  const items = (list) => {
+    return [
+      {
+        label: "Rename",
+        action: () => {
+          dispatch(setTaskListEditing({ id: list.id, isEditing: true }));
+        },
+      },
+      {
+        label: "Delete",
+        action: () => {
+          dispatch(removeTaskList({ id: list.id }));
+        },
+      },
+    ];
+  };
   return (
     <div className="my-4">
       <ScrollableDiv height="130px">
         <ul className="py-2 [&>*]:hover:bg-neutral-900 [&>*]:hover:rounded-sm [&>*]:cursor-pointer [&>*]:text-sm">
-          {taskList.map((list) => {
+          {customLists.map((list) => {
             return (
               <ContextMenuWrapper
                 key={list.id}
                 id={list.id}
-                items={items}
+                items={items(list)}
                 positionMode="smart"
               >
                 <TaskListItem list={list} />
