@@ -1,6 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { tasksReducer, addTasks, removeTasks } from "./slices/tasksSlice";
+import {
+  tasksReducer,
+  changePanel,
+  addTaskList,
+  addTasks,
+  removeTasks,
+  updateTaskListTitle,
+  setTaskListEditing,
+  removeTaskList,
+} from "./slices/tasksSlice";
 
 const store = configureStore({
   reducer: {
@@ -8,4 +17,13 @@ const store = configureStore({
   },
 });
 
-export { store, addTasks, removeTasks };
+export {
+  store,
+  updateTaskListTitle,
+  setTaskListEditing,
+  addTaskList,
+  changePanel,
+  addTasks,
+  removeTasks,
+  removeTaskList,
+};

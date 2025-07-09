@@ -9,12 +9,12 @@ import {
 } from "./Icons";
 
 const PanelHeader = () => {
-  const { currentTaskPanel } = useSelector((state) => state.tasks);
+  const { currentTaskPanelId, taskList } = useSelector((state) => state.tasks);
 
   let panel = null;
 
-  switch (currentTaskPanel) {
-    case taskPanels.AllTasksPanel:
+  switch (currentTaskPanelId) {
+    case taskPanels.AllTasksPanelId:
       panel = (
         <h3 className="text-2xl flex items-center gap-2 w-fit">
           <HomeIcon />
@@ -22,7 +22,7 @@ const PanelHeader = () => {
         </h3>
       );
       break;
-    case taskPanels.MyDayTasksPanel:
+    case taskPanels.MyDayTasksPanelId:
       panel = (
         <h3 className="text-2xl flex items-center gap-2 w-fit">
           <SunIcon />
@@ -30,7 +30,7 @@ const PanelHeader = () => {
         </h3>
       );
       break;
-    case taskPanels.ImportantTasksPanel:
+    case taskPanels.ImportantTasksPanelId:
       panel = (
         <h3 className="text-2xl flex items-center gap-2 w-fit">
           <StarIcon />
@@ -38,7 +38,7 @@ const PanelHeader = () => {
         </h3>
       );
       break;
-    case taskPanels.PlannedTasksPanel:
+    case taskPanels.PlannedTasksPanelId:
       panel = (
         <h3 className="text-2xl flex items-center gap-2 w-fit">
           <CalendarIcon />
@@ -50,7 +50,10 @@ const PanelHeader = () => {
       panel = (
         <h3 className="text-2xl flex items-center gap-2 w-fit">
           <HamburgerMenuIcon />
-          Tasks
+          {
+            taskList.find((list) => list.id === currentTaskPanelId)
+              .taskListTitle
+          }
         </h3>
       );
   }
