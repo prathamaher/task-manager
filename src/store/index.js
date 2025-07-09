@@ -9,6 +9,7 @@ import {
   updateTaskListTitle,
   setTaskListEditing,
   removeTaskList,
+  toggleTaskComplete,
 } from "./slices/tasksSlice";
 
 const store = configureStore({
@@ -26,4 +27,5 @@ export {
   addTasks,
   removeTasks,
   removeTaskList,
+  toggleTaskComplete,
 };
