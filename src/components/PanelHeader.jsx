@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import taskPanels from "../constants/taskPanels"; // make sure this path is correct
+import taskPanels from "../constants/taskPanels";
 import {
   CalendarIcon,
   HamburgerMenuIcon,
@@ -11,52 +11,34 @@ import {
 const PanelHeader = () => {
   const { currentTaskPanelId, taskList } = useSelector((state) => state.tasks);
 
-  let panel = null;
+  const panelIcons = {
+    [taskPanels.MyDayTasksPanelId]: <SunIcon />,
+    [taskPanels.ImportantTasksPanelId]: <StarIcon />,
+    [taskPanels.PlannedTasksPanelId]: <CalendarIcon />,
+    [taskPanels.AllTasksPanelId]: <HomeIcon />,
+  };
 
-  switch (currentTaskPanelId) {
-    case taskPanels.AllTasksPanelId:
-      panel = (
-        <h3 className="text-2xl flex items-center gap-2 w-fit">
-          <HomeIcon />
-          <p>All Tasks</p>
-        </h3>
-      );
-      break;
-    case taskPanels.MyDayTasksPanelId:
-      panel = (
-        <h3 className="text-2xl flex items-center gap-2 w-fit">
-          <SunIcon />
-          My Day
-        </h3>
-      );
-      break;
-    case taskPanels.ImportantTasksPanelId:
-      panel = (
-        <h3 className="text-2xl flex items-center gap-2 w-fit">
-          <StarIcon />
-          Important
-        </h3>
-      );
-      break;
-    case taskPanels.PlannedTasksPanelId:
-      panel = (
-        <h3 className="text-2xl flex items-center gap-2 w-fit">
-          <CalendarIcon />
-          Planned
-        </h3>
-      );
-      break;
-    default:
-      panel = (
-        <h3 className="text-2xl flex items-center gap-2 w-fit">
-          <HamburgerMenuIcon />
-          {
-            taskList.find((list) => list.id === currentTaskPanelId)
-              .taskListTitle
-          }
-        </h3>
-      );
-  }
+  const getPanelData = () => {
+    const currentTaskList = taskList.find(
+      (list) => list.id === currentTaskPanelId
+    );
+
+    const icon = panelIcons[currentTaskPanelId] || <HamburgerMenuIcon />;
+
+    return {
+      icon,
+      taskListTitle: currentTaskList?.taskListTitle || "",
+    };
+  };
+
+  const { icon, taskListTitle } = getPanelData();
+
+  const panel = (
+    <h3 className="text-2xl flex items-center gap-2 w-fit">
+      {icon}
+      {taskListTitle}
+    </h3>
+  );
 
   return <div>{panel}</div>;
 };
