@@ -1,8 +1,8 @@
 const taskPanels = {
   MyDayTasksPanelId: "myDayTasks",
-  ImportantTasksPanelId: "ImportantTasksPanel",
-  PlannedTasksPanelId: "PlannedTasksPanel",
-  AllTasksPanelId: "AllTasksPanel",
+  ImportantTasksPanelId: "importantTasks",
+  PlannedTasksPanelId: "plannedTasks",
+  AllTasksPanelId: "allTasks",
 };
 
 export default taskPanels;

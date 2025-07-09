@@ -10,8 +10,8 @@ const TaskCount = ({ list }) => {
   return (
     <p
       className="flex items-center justify-center 
-                text-[11px] h-3 w-3 p-2 rounded-full 
-                bg-gray-900 text-white"
+                text-[10px] h-3 w-3 p-2 rounded-full 
+                bg-neutral-700 text-white"
     >
       {tasks.length}
     </p>

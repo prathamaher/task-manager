@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addTasks } from "../store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PlusIcon, RadioButtonUnChecked } from "./Icons";
 
 const TaskInputForm = () => {
   const [input, setInput] = useState("");
   const [focused, setFocused] = useState(false);
+  const inputRef = useRef();
+
+  const { currentTaskPanelId } = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setInput("");
+    setFocused(false);
+    inputRef.current?.focus();
+  }, [currentTaskPanelId]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +43,7 @@ const TaskInputForm = () => {
     <div className="relative">
       <form onSubmit={handleSubmit}>
         <input
+          ref={inputRef}
           onChange={handleChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
