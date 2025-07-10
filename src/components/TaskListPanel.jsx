@@ -72,7 +72,6 @@ const TaskListPanel = () => {
       <ScrollableDiv height="61%" className="mt-12">
         <ul className="space-y-2 mb-4 px-3 text-white">
           {tasks.map((task) => {
-            console.log("before : ", task);
             return <TaskItem key={task.id} task={task} />;
           })}
         </ul>

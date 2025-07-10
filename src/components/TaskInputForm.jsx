@@ -17,18 +17,20 @@ const TaskInputForm = () => {
     inputRef.current?.focus();
   }, [currentTaskPanelId]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const submitInput = () => {
     if (!input.trim()) return;
     dispatch(addTasks(input));
     setInput("");
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitInput();
+  };
+
   //for icon click-submit
   const handleIconClick = () => {
-    if (!input.trim()) return;
-    dispatch(addTasks(input));
-    setInput("");
+    submitInput();
   };
 
   const handleChange = (event) => {
